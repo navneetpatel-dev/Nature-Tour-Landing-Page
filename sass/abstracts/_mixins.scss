@@ -12,3 +12,49 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+// MEDIA QUERY MANAGER
+
+/* 
+
+0 - 600px  :          Phone
+600 - 900px  :        Tablet (Portrait)
+900 - 1200px  :       Tablet (Landscape)
+[1200 - 1800px]  :    is our where normal styles apply
+1800 +  :             Big Desktop
+
+$breakpoints argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px (rem and em inside breakpoint does not depend upon html font-size, it directly comes from browser font setting, so html font-size does not have any impact on it)
+
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
